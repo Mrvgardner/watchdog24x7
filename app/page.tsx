@@ -11,10 +11,19 @@ export default function Home() {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="https://clearchoicepay.com" className="text-gray-600 hover:text-orange-600 text-sm font-medium flex items-center gap-2">
-            <ArrowRight size={16} />
-            Back to Clear Choice Payment Solutions
-          </Link>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/images/Watchdog-Shield.png"
+              alt="Watchdog Logo"
+              width={40}
+              height={40}
+              className="flex-shrink-0"
+            />
+            <div className="flex flex-col">
+              <span className="text-lg font-bold text-navy">Watchdog</span>
+              <span className="text-xs text-gray-600">by Clear Choice Payment Solutions</span>
+            </div>
+          </div>
           <button className="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition-colors">
             Contact Sales
           </button>
@@ -58,7 +67,7 @@ export default function Home() {
       {/* Competitive Advantages Section */}
       <section className="py-16 sm:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-4">Watchdog Competitive Advantages</h2>
+          <h2 className="text-4xl font-bold text-center mb-4">WATCHDOG COMPETITIVE ADVANTAGES</h2>
           <p className="text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto">
             Industry-leading features that set Watchdog 24x7 apart from the competition
           </p>
@@ -134,7 +143,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold mb-8">The ATM Fraud Landscape</h2>
+              <h2 className="text-4xl font-bold mb-8">THE ATM FRAUD LANDSCAPE</h2>
               <div className="space-y-6">
                 <div>
                   <h3 className="text-2xl font-bold text-orange-600 mb-2">$27 Billion</h3>
@@ -163,7 +172,7 @@ export default function Home() {
       {/* Benefits Section */}
       <section className="py-16 sm:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16">Why Choose Watchdog?</h2>
+          <h2 className="text-4xl font-bold text-center mb-16">WHY CHOOSE WATCHDOG?</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {[
@@ -203,7 +212,7 @@ export default function Home() {
       {/* Testimonials Section */}
       <section className="py-16 sm:py-24 bg-orange-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white text-center mb-16">What Our Partners Say</h2>
+          <h2 className="text-4xl font-bold text-white text-center mb-16">WHAT OUR PARTNERS SAY</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -238,7 +247,7 @@ export default function Home() {
       {/* Explore More CTA */}
       <section className="py-16 sm:py-24 bg-gradient-to-r from-navy to-blue-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h2 className="text-4xl font-bold mb-6">Ready to Secure Your ATM Network?</h2>
+          <h2 className="text-4xl font-bold mb-6">READY TO SECURE YOUR ATM NETWORK?</h2>
           <p className="text-xl text-gray-100 mb-8">
             Join hundreds of financial institutions protecting their ATM networks with Watchdog 24x7
           </p>
@@ -259,7 +268,7 @@ export default function Home() {
       {/* Contact Form Section */}
       <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-12">Get in Touch</h2>
+          <h2 className="text-4xl font-bold text-center mb-12">GET IN TOUCH</h2>
           <div className="bg-gray-50 p-8 rounded-lg">
             <iframe
               src="https://fillout.com/embed/a9PMrjCG6eus"
@@ -303,7 +312,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-gray-700 pt-8 flex flex-col sm:flex-row items-center justify-between">
-            <p className="text-gray-400 text-sm">© 2024 Watchdog 24x7 by Clear Choice Payment Solutions. All rights reserved.</p>
+            <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Watchdog 24x7 by Clear Choice Payment Solutions. All rights reserved.</p>
             <p className="text-gray-400 text-sm mt-4 sm:mt-0">Protecting ATM Networks Worldwide</p>
           </div>
         </div>
