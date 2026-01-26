@@ -271,10 +271,12 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-center mb-12">GET IN TOUCH</h2>
           <div className="bg-gray-50 p-8 rounded-lg">
             <iframe
-              src="https://fillout.com/embed/a9PMrjCG6eus"
+              src="https://form.fillout.com/embed/a9PMrjCG6eus"
               className="w-full h-[600px] border-0 rounded"
               title="Watchdog Contact Form"
               style={{ overflow: 'visible' }}
+              allow="geolocation; microphone; camera"
+              allowFullScreen
             />
           </div>
         </div>
