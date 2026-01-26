@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #ff4f00;
+  --color-brand-dark: #e54700;
+  --color-navy: #002b5e;
+  --color-navy-dark: #001f45;
+}
+
+@font-face {
+  font-family: 'SwitchCommerceBold';
+  src: url('/fonts/SwitchCommerce-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SwitchCommerceReg';
+  src: url('/fonts/SwitchCommerce-Reg.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Lato', 'SwitchCommerceReg', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'SwitchCommerceBold', 'Lato', sans-serif;
+}
