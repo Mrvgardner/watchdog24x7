@@ -36,7 +36,7 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 flex flex-col items-center text-center">
           <div className="mb-8">
             <Image
-              src="/images/Watchdog-shield.png"
+              src="/images/Watchdog-Shield.png"
               alt="Watchdog Logo"
               width={120}
               height={120}

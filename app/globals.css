@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'SwitchCommerceBold';
-  src: url('/fonts/SwitchCommerce-Bold.otf') format('opentype');
+  src: url('/fonts/SWITCHCOMMERCEBOLD.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -17,7 +17,7 @@
 
 @font-face {
   font-family: 'SwitchCommerceReg';
-  src: url('/fonts/SwitchCommerce-Reg.otf') format('opentype');
+  src: url('/fonts/SWITCHCOMMERCEREG.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

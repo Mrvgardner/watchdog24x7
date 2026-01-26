@@ -1,0 +1,143 @@
+@layer utilities {
+  /* Tuned for a laptop look; adjust lg/xl by ±10px if you want micro changes */
+
+  /* ATM: medium */
+  .device--atm {
+    /* Smaller across breakpoints to avoid overlapping next section */
+    @apply w-[250px] md:w-[280px] lg:w-[300px] xl:w-[300px];
+  }
+
+  /* Kiosk: smaller (was too tall before) */
+  .device--kiosk {
+    /* Match ATM widths so kiosk and ATM are the same size */
+    @apply w-[250px] md:w-[280px] lg:w-[300px] xl:w-[300px];
+  }
+
+  /* POS: larger (was too small before) */
+  .device--pos {
+    @apply w-[390px] md:w-[410px] lg:w-[430px] xl:w-[430px];
+  }
+
+  /* Positioning & stacking for the overlay wrapper */
+  .device-wrap {
+    /* Sit lower by default so artwork doesn't run off the top; still overlaps the diagonal slightly */
+    @apply absolute bottom-6 md:bottom-10 xl:bottom-12 right-6 md:right-10 xl:right-14 z-30 pointer-events-none select-none;
+  }
+
+  /* Optional safety cap so devices never feel huge on tall screens */
+  .device-max { max-height: 54vh; }
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Focus visibility */
+:focus-visible {
+  outline: none;
+  @apply ring-2 ring-brand ring-offset-2;
+}
+
+/* Smooth rendering & scrolling */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+
+/* Section rhythm */
+.section {
+  @apply max-w-7xl mx-auto px-6 py-16;
+}
+
+/* Custom global styles */
+body {
+  @apply bg-white text-gray-800;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-heading font-bold;
+}
+
+p {
+  @apply mb-4;
+}
+
+/* Angled (diagonal) bottom edge for hero */
+/* Angled (diagonal) bottom edge for hero (restored) */
+.clip-hero-angle {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+}
+
+
+/* (duplicate html font-smoothing rule removed after adding smooth scroll) */
+
+/* Custom fonts */
+@font-face {
+  font-family: 'SwitchCommerceBold';
+  src: url('/fonts/SWITCHCOMMERCEBOLD.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SwitchCommerceReg';
+  src: url('/fonts/SWITCHCOMMERCEREG.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply body font: Lato first */
+html, body {
+  font-family: 'Lato', 'SwitchCommerceReg', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-weight: 400;
+}
+
+/* --- Page titles (h1) & Section titles (h2) --- */
+h1, h2 {
+  font-family: 'SwitchCommerceBold', 'Lato', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-weight: 700;
+  text-transform: uppercase;   /* FORCE ALL CAPS */
+  letter-spacing: 0.02em;
+}
+
+/* --- Card titles (h3, h4) --- */
+h3, h4 {
+  font-family: 'SwitchCommerceBold', 'Lato', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-weight: 700;
+  /* NO text-transform → respects Title Case from data */
+}
+
+/* --- Lower headings (h5, h6) if you ever use them --- */
+h5, h6 {
+  font-family: 'SwitchCommerceBold', 'Lato', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-weight: 700;
+  /* default casing */
+}
+
+/* Utility for headings placed in Tailwind utilities layer for priority */
+@layer utilities {
+  .font-switch {
+    font-family: 'SwitchCommerceBold', 'Lato', sans-serif;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Use on any non-heading title element (div/span/a etc.) */
+  .title-caps {
+    @apply uppercase;
+    letter-spacing: 0.02em;
+    font-family: 'SwitchCommerceBold', 'Lato', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+    font-weight: 700;
+  }
+
+  /* Section background utilities */
+  .section-surface { @apply bg-white; }
+  .section-muted   { @apply bg-gray-50; }
+}
+
+/* Persistent brand navy utility to avoid purge issues */
+@layer utilities {
+  .bg-brand-navy { background-color: #0a1a2f; }
+  .text-brand-navy { color: #0a1a2f; }
+}
+
+/* Keep device artwork consistent across monitor sizes */
+@layer utilities {
+  /* (Removed hero-device-fixed in favor of DeviceOverlay component) */
+}
