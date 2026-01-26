@@ -75,7 +75,7 @@ export default function ATMFraudChart() {
             labels: {
               font: {
                 size: 14,
-                weight: '500'
+                weight: 500
               },
               color: '#374151',
               padding: 20
