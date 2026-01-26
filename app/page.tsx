@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ATMFraudChart from './components/ATMFraudChart';
+import ContactForm from './components/ContactForm';
 import { ArrowRight, Shield, Eye, AlertCircle, CheckCircle, TrendingDown, Lock } from 'react-feather';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
               alt="Watchdog Logo"
               width={40}
               height={40}
+              priority
               className="flex-shrink-0"
             />
             <div className="flex flex-col">
@@ -49,6 +51,7 @@ export default function Home() {
               alt="Watchdog Logo"
               width={120}
               height={120}
+              priority
               className="mx-auto"
             />
           </div>
@@ -270,11 +273,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-12">GET IN TOUCH</h2>
           <div className="bg-gray-50 p-8 rounded-lg">
-            <iframe
-              src="https://fillout.com/embed/a9PMrjCG6eus"
-              className="w-full h-96 border-0 rounded"
-              title="Watchdog Contact Form"
-            />
+            <ContactForm />
           </div>
         </div>
       </section>
