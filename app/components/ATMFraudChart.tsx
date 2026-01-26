@@ -41,19 +41,29 @@ export default function ATMFraudChart() {
     const ctx = canvasRef.current.getContext('2d');
     if (!ctx) return;
 
+    const data = [28, 22, 18, 20, 12];
+    const total = data.reduce((sum, val) => sum + val, 0);
+    const labels = [
+      'Card Skimming',
+      'Malware Attacks',
+      'Physical Tampering',
+      'Transaction Fraud',
+      'Unauthorized Access'
+    ];
+
+    // Format labels with percentages
+    const labelsWithPercentages = labels.map((label, index) => {
+      const percentage = ((data[index] / total) * 100).toFixed(1);
+      return `${percentage}% ${label}`;
+    });
+
     chartRef.current = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: [
-          'Card Skimming',
-          'Malware Attacks',
-          'Physical Tampering',
-          'Transaction Fraud',
-          'Unauthorized Access'
-        ],
+        labels: labelsWithPercentages,
         datasets: [
           {
-            data: [28, 22, 18, 20, 12],
+            data: data,
             backgroundColor: [
               '#ff4f00',
               '#0066cc',
@@ -70,8 +80,12 @@ export default function ATMFraudChart() {
         responsive: true,
         maintainAspectRatio: true,
         plugins: {
+          title: {
+            display: false
+          },
           legend: {
             position: 'bottom',
+            align: 'start',
             labels: {
               font: {
                 size: 14,
@@ -94,10 +108,15 @@ export default function ATMFraudChart() {
 
   return (
     <div className="w-full max-w-md">
-      <canvas
-        ref={canvasRef}
-        style={{ maxWidth: '100%', height: 'auto' }}
-      />
+      <div className="w-[280px]">
+        <h3 className="text-xl font-bold text-[#002b5e] mb-5 text-center">
+          ATM Attacks Last Year
+        </h3>
+        <canvas
+          ref={canvasRef}
+          style={{ maxWidth: '100%', height: 'auto' }}
+        />
+      </div>
     </div>
   );
 }

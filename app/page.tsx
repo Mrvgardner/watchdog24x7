@@ -162,7 +162,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center pl-12 border-l border-gray-300">
               <ATMFraudChart />
             </div>
           </div>
@@ -266,15 +266,15 @@ export default function Home() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 sm:py-24 bg-gray-50">
+      <section className="py-16 sm:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-12 text-[#002b5e]">GET IN TOUCH</h2>
-          <div className="bg-gray-50 p-8 rounded-lg">
+          <div className="bg-white p-6 rounded-lg">
             <iframe
-              src="https://form.fillout.com/t/a9PMrjCG6eus"
-              className="w-full h-[600px] border-0 rounded"
+              src="https://form.fillout.com/t/a9PMrjCG6eus?transparentBackground=1"
+              className="mt-6 w-full h-[840px] border-0"
               title="Watchdog Contact Form"
-              style={{ overflow: 'visible' }}
+              style={{ overflow: 'visible', background: 'transparent' }}
               allow="geolocation; microphone; camera"
               allowFullScreen
             />
