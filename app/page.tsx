@@ -1,17 +1,56 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ATMFraudChart from './components/ATMFraudChart';
-import { ArrowRight, Shield, Eye, AlertCircle, CheckCircle, TrendingDown, Lock } from 'react-feather';
+import { ArrowRight, Shield, Eye, AlertCircle, CheckCircle, TrendingDown, Lock, Search } from 'react-feather';
 
 export default function Home() {
+  const [showBanner, setShowBanner] = useState(false);
+  const [isOfferValid, setIsOfferValid] = useState(false);
+  const bannerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Check if offer is still valid (expires March 16, 2026 at midnight)
+    const expirationDate = new Date('2026-03-16T00:00:00');
+    const now = new Date();
+    setIsOfferValid(now < expirationDate);
+
+    if (!isOfferValid) return;
+
+    // Intersection Observer to trigger animation when visible
+    let timer: NodeJS.Timeout | null = null;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          timer = setTimeout(() => setShowBanner(true), 500);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (bannerRef.current) {
+      observer.observe(bannerRef.current);
+    }
+
+    return () => {
+      if (bannerRef.current) {
+        observer.unobserve(bannerRef.current);
+      }
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [isOfferValid]);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <Link href="https://www.clearchoicepay.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 no-underline">
             <img
               src="/images/Watchdog-Shield.png"
               alt="Watchdog Logo"
@@ -23,10 +62,10 @@ export default function Home() {
               <span className="text-lg font-bold text-navy">WATCHDOG</span>
               <span className="text-xs text-gray-600">by Clear Choice Payment Solutions</span>
             </div>
-          </div>
-          <button className="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition-colors">
+          </Link>
+          <a href="#contact" className="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition-colors inline-block">
             Contact Sales
-          </button>
+          </a>
         </div>
       </header>
 
@@ -58,11 +97,41 @@ export default function Home() {
           <p className="text-xl text-gray-100 mb-8 max-w-2xl">
             24/7 intelligent monitoring, real-time alerts, and comprehensive security for your ATM network
           </p>
-          <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-lg flex items-center gap-2 text-lg transition-colors">
-            Get Started <ArrowRight size={20} />
-          </button>
+          <a href="#contact" className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-lg flex items-center gap-2 text-lg transition-colors">
+            Protect My ATMs <ArrowRight size={20} />
+          </a>
         </div>
       </section>
+
+      {/* Promotional Banner - Animated */}
+      {isOfferValid && (
+        <div 
+          ref={bannerRef}
+          className={`overflow-hidden transition-all duration-700 ease-out ${
+            showBanner ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div 
+            className={`bg-gradient-to-r from-orange-600 to-orange-500 py-12 shadow-lg transform transition-transform duration-700 ease-out ${
+              showBanner ? 'translate-x-0' : '-translate-x-full'
+            }`}
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h3 className="text-5xl font-bold mb-4 text-white tracking-wide">LIMITED TIME OFFER!</h3>
+              <p className="text-3xl text-white mb-2">
+                Get <span className="text-navy font-extrabold underline decoration-2">20% OFF</span> the cost of Watchdog for life!
+              </p>
+              <a 
+                href="#contact"
+                className="inline-block bg-white text-orange-600 hover:bg-gray-100 font-bold py-4 px-10 rounded-lg transition-colors text-xl underline decoration-2 my-6"
+              >
+                Lock In 20% for Life
+              </a>
+              <p className="text-xl text-white italic">Offer ends 3/15/26.</p>
+            </div>
+        </div>
+      </div>
+      )}
 
       {/* Competitive Advantages Section */}
       <section className="py-16 sm:py-24 bg-gray-50">
@@ -80,7 +149,7 @@ export default function Home() {
                 description: 'Directly replaces your existing communication device, eliminating unnecessary hardware and simplifying your setup.'
               },
               {
-                icon: AlertCircle,
+                icon: Search,
                 title: 'Fully Managed Monitoring',
                 description: 'We perform all monitoring on your behalf, saving you time otherwise spent pulling reports or analyzing health data. Real-time terminal health visibility, including faults, component status, and device performance.'
               },
@@ -193,7 +262,7 @@ export default function Home() {
                 items: ['24/7 monitoring and alerts', 'Dedicated account management', 'Quick incident response']
               }
             ].map((benefit, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-lg shadow-md">
+              <div key={idx} className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                 <h3 className="text-2xl font-bold mb-6 text-[#002b5e]">{benefit.title}</h3>
                 <ul className="space-y-3">
                   {benefit.items.map((item, i) => (
@@ -252,11 +321,11 @@ export default function Home() {
             Join hundreds of financial institutions protecting their ATM networks with Watchdog 24x7
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+            <a href="#contact" className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-lg transition-colors inline-block">
               Schedule Demo
-            </button>
+            </a>
             <Link
-              href="https://clearchoicepay.com"
+              href="https://clearchoicepay.com/services/watchdog"
               className="bg-white text-navy hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-colors"
             >
               Learn More
@@ -266,10 +335,10 @@ export default function Home() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 sm:py-24 bg-white">
+      <section id="contact" className="py-16 sm:py-24" style={{ backgroundColor: '#f9fafc' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-12 text-[#002b5e]">GET IN TOUCH</h2>
-          <div className="bg-white p-6 rounded-lg">
+          <div className="p-6 rounded-lg" style={{ backgroundColor: '#f9fafc' }}>
             <iframe
               src="https://form.fillout.com/t/a9PMrjCG6eus?transparentBackground=1"
               className="mt-6 w-full h-[840px] border-0"
