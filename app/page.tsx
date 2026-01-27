@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ATMFraudChart from './components/ATMFraudChart';
+import ContactFormEmbed from './components/ContactFormEmbed';
 import { ArrowRight, Shield, Eye, AlertCircle, CheckCircle, TrendingDown, Lock, Search } from 'react-feather';
 
 export default function Home() {
@@ -122,7 +123,7 @@ export default function Home() {
                 Get <span className="text-navy font-extrabold underline decoration-2">20% OFF</span> the cost of Watchdog for life!
               </p>
               <a 
-                href="#contact"
+                href="/offer"
                 className="inline-block bg-white text-orange-600 hover:bg-gray-100 font-bold py-4 px-10 rounded-lg transition-colors text-xl underline decoration-2 my-6"
               >
                 Lock In 20% for Life
@@ -338,16 +339,7 @@ export default function Home() {
       <section id="contact" className="py-16 sm:py-24" style={{ backgroundColor: '#f9fafc' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-12 text-[#002b5e]">GET IN TOUCH</h2>
-          <div className="p-6 rounded-lg" style={{ backgroundColor: '#f9fafc' }}>
-            <iframe
-              src="https://form.fillout.com/t/a9PMrjCG6eus?transparentBackground=1"
-              className="mt-6 w-full h-[840px] border-0"
-              title="Watchdog Contact Form"
-              style={{ overflow: 'visible', background: 'transparent' }}
-              allow="geolocation; microphone; camera"
-              allowFullScreen
-            />
-          </div>
+          <ContactFormEmbed />
         </div>
       </section>
 
