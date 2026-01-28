@@ -185,6 +185,76 @@ export default function OfferPage() {
         </section>
       )}
 
+      {/* What You Get Section */}
+      {isOfferValid && (
+        <section className="py-12 sm:py-16 bg-gray-50">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-4xl font-bold text-center mb-12 text-[#002b5e]">WHAT YOU GET WITH WATCHDOG</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex items-start gap-4 bg-white p-6 rounded-lg shadow-sm">
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-white text-xl font-bold">
+                  ✓
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-navy mb-2">24/7 Proactive Monitoring</h3>
+                  <p className="text-gray-600">Round-the-clock surveillance of your ATM fleet with instant alerts</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4 bg-white p-6 rounded-lg shadow-sm">
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-white text-xl font-bold">
+                  ✓
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-navy mb-2">Automated Fault Detection</h3>
+                  <p className="text-gray-600">Advanced AI identifies and reports issues before they impact customers</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4 bg-white p-6 rounded-lg shadow-sm">
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-white text-xl font-bold">
+                  ✓
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-navy mb-2">Comprehensive Reporting</h3>
+                  <p className="text-gray-600">Detailed analytics and insights to optimize your ATM performance</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4 bg-white p-6 rounded-lg shadow-sm">
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-white text-xl font-bold">
+                  ✓
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-navy mb-2">Expert Support Team</h3>
+                  <p className="text-gray-600">Dedicated specialists ready to assist with any ATM concerns</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4 bg-white p-6 rounded-lg shadow-sm">
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-white text-xl font-bold">
+                  ✓
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-navy mb-2">Reduced Downtime</h3>
+                  <p className="text-gray-600">Minimize lost revenue with early problem detection and resolution</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4 bg-white p-6 rounded-lg shadow-sm">
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-white text-xl font-bold">
+                  ✓
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-navy mb-2">Seamless Integration</h3>
+                  <p className="text-gray-600">Easy setup with your existing ATM infrastructure and systems</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Contact Form Section */}
       {isOfferValid && (
         <section className="py-12 sm:py-16 bg-white">
