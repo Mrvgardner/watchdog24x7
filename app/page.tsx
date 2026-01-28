@@ -336,7 +336,7 @@ export default function Home() {
       </section>
 
       {/* Contact Form Section */}
-      <section id="contact" className="py-16 sm:py-24" style={{ backgroundColor: '#f9fafc' }}>
+      <section id="contact" className="py-16 sm:py-24" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-12 text-[#002b5e]">GET IN TOUCH</h2>
           <ContactFormEmbed />
