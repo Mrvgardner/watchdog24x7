@@ -130,7 +130,7 @@ export default function OfferPage() {
             </div>
           </Link>
           <Link href="/" className="text-navy hover:text-orange-600 font-medium">
-            ← Back to Home
+            ← See What Else Watchdog Can Do For You
           </Link>
         </div>
       </header>
