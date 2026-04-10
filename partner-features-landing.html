@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Switch Commerce — Partner Features</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@600;700;800;900&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: #e9e8e8;
+    color: #002b5e;
+    line-height: 1.6;
+  }
+
+  .sc-landing {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+  }
+
+  /* ---- Header ---- */
+  .sc-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .sc-header__badge {
+    display: inline-block;
+    background: rgba(9, 81, 250, 0.10);
+    color: #0951fa;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .sc-header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: #002b5e;
+    margin-bottom: 12px;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .sc-header p {
+    font-size: 17px;
+    color: #5a6278;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ---- Accordion ---- */
+  .sc-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sc-accordion-item {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #d5d4d4;
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .sc-accordion-item:hover {
+    border-color: #c5ccd8;
+  }
+
+  .sc-accordion-item.is-open {
+    border-color: #0951fa;
+    box-shadow: 0 4px 24px rgba(59, 130, 246, 0.10);
+  }
+
+  .sc-accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 16px;
+    transition: background 0.15s ease;
+  }
+
+  .sc-accordion-trigger:hover {
+    background: #f5f7fa;
+  }
+
+  .sc-accordion-trigger__left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .sc-accordion-trigger__icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .sc-accordion-trigger__text h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #002b5e;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+  }
+
+  .sc-accordion-trigger__text span {
+    font-size: 13px;
+    color: #7c8498;
+    font-weight: 400;
+  }
+
+  .sc-accordion-trigger__chevron {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    color: #9ca3af;
+  }
+
+  .sc-accordion-item.is-open .sc-accordion-trigger__chevron {
+    transform: rotate(180deg);
+    color: #0951fa;
+  }
+
+  /* Panel */
+  .sc-accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+
+  .sc-accordion-panel__inner {
+    padding: 0 24px 24px;
+  }
+
+  .sc-panel-divider {
+    height: 1px;
+    background: #e8ecf1;
+    margin-bottom: 20px;
+  }
+
+  /* Challenge / Solution cards */
+  .sc-panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .sc-panel-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .sc-panel-card {
+    padding: 18px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+
+  .sc-panel-card--challenge {
+    background: #fef3f2;
+    border: 1px solid #fde0db;
+  }
+
+  .sc-panel-card--solution {
+    background: #ecfdf5;
+    border: 1px solid #c4f0dd;
+  }
+
+  .sc-panel-card__label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .sc-panel-card--challenge .sc-panel-card__label {
+    color: #b42318;
+  }
+
+  .sc-panel-card--solution .sc-panel-card__label {
+    color: #067647;
+  }
+
+  .sc-panel-card p {
+    color: #3d4455;
+    line-height: 1.55;
+  }
+
+  /* Highlights */
+  .sc-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .sc-highlight {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(9, 81, 250, 0.08);
+    color: #002b5e;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+  }
+
+  .sc-highlight svg {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Detail text */
+  .sc-panel-details {
+    font-size: 14px;
+    color: #4b5468;
+    line-height: 1.65;
+  }
+
+  .sc-panel-details ul {
+    padding-left: 20px;
+    margin-top: 8px;
+  }
+
+  .sc-panel-details li {
+    margin-bottom: 6px;
+  }
+
+  .sc-panel-details li::marker {
+    color: #0951fa;
+  }
+
+  .sc-panel-details strong {
+    color: #002b5e;
+    font-weight: 600;
+  }
+
+  .sc-panel-note {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 12px;
+    font-style: italic;
+  }
+
+  /* Footer CTA */
+  .sc-footer {
+    text-align: center;
+    margin-top: 48px;
+    padding: 36px 24px;
+    background: linear-gradient(135deg, #002b5e 0%, #0951fa 100%);
+    border-radius: 16px;
+    color: #fff;
+  }
+
+  .sc-footer h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .sc-footer p {
+    font-size: 15px;
+    color: #b8c8e8;
+    margin-bottom: 20px;
+  }
+
+  .sc-footer__cta {
+    display: inline-block;
+    background: #ffffff;
+    color: #0951fa;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  .sc-footer__cta:hover {
+    background: #e9e8e8;
+    transform: translateY(-1px);
+  }
+
+  /* Icon backgrounds per feature — brand palette */
+  .icon-reversals { background: rgba(0, 43, 94, 0.10); color: #002b5e; }
+  .icon-dcc-mc { background: rgba(9, 81, 250, 0.10); color: #0951fa; }
+  .icon-dcc-visa { background: rgba(9, 81, 250, 0.10); color: #0951fa; }
+  .icon-fallback { background: rgba(0, 43, 94, 0.08); color: #002b5e; }
+  .icon-ej { background: rgba(9, 81, 250, 0.10); color: #0951fa; }
+  .icon-surcharge { background: rgba(0, 43, 94, 0.10); color: #002b5e; }
+  .icon-moneypass { background: rgba(9, 81, 250, 0.08); color: #0951fa; }
+</style>
+</head>
+<body>
+
+<div class="sc-landing">
+
+  <!-- Header -->
+  <div class="sc-header">
+    <div class="sc-header__badge">Partner Resources</div>
+    <h1>Additional Features for Your ATM Portfolio</h1>
+    <p>Explore the options below to learn how each feature can help reduce costs, increase revenue, and simplify operations.</p>
+  </div>
+
+  <!-- Accordion -->
+  <div class="sc-accordion">
+
+    <!-- 1. Automated Reversals -->
+    <div class="sc-accordion-item">
+      <button class="sc-accordion-trigger" aria-expanded="false">
+        <div class="sc-accordion-trigger__left">
+          <div class="sc-accordion-trigger__icon icon-reversals">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          </div>
+          <div class="sc-accordion-trigger__text">
+            <h3>Automated Reversals</h3>
+            <span>Instantly reverse non-dispensed withdrawals</span>
+          </div>
+        </div>
+        <svg class="sc-accordion-trigger__chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="sc-accordion-panel">
+        <div class="sc-accordion-panel__inner">
+          <div class="sc-panel-divider"></div>
+          <div class="sc-panel-grid">
+            <div class="sc-panel-card sc-panel-card--challenge">
+              <div class="sc-panel-card__label">The Challenge</div>
+              <p>Failed transactions can frustrate customers and cost operators money if not refunded instantly. Manual reversal processes delay funds and erode trust.</p>
+            </div>
+            <div class="sc-panel-card sc-panel-card--solution">
+              <div class="sc-panel-card__label">The Solution</div>
+              <p>Switch Commerce automatically reverses failed transactions within seconds — no paperwork or manual intervention required.</p>
+            </div>
+          </div>
+          <div class="sc-highlights">
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Enable with one click
+            </div>
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              No physical terminal visit
+            </div>
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              All ATM makes &amp; models
+            </div>
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Avg. savings $46/terminal/mo
+            </div>
+          </div>
+          <div class="sc-panel-details">
+            Powered by exclusive processing logic, non-dispensed approvals are automatically reversed back to the cardholder's account. You'll never have to waste time requesting manual reversals again.
+          </div>
+          <div class="sc-panel-note">*Past performance may not be indicative of future results.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. DCC - Mastercard -->
+    <div class="sc-accordion-item">
+      <button class="sc-accordion-trigger" aria-expanded="false">
+        <div class="sc-accordion-trigger__left">
+          <div class="sc-accordion-trigger__icon icon-dcc-mc">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="9" cy="12" r="7"/><circle cx="15" cy="12" r="7"/></svg>
+          </div>
+          <div class="sc-accordion-trigger__text">
+            <h3>DCC — Mastercard</h3>
+            <span>Dynamic Currency Conversion for Mastercard</span>
+          </div>
+        </div>
+        <svg class="sc-accordion-trigger__chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="sc-accordion-panel">
+        <div class="sc-accordion-panel__inner">
+          <div class="sc-panel-divider"></div>
+          <div class="sc-panel-grid">
+            <div class="sc-panel-card sc-panel-card--challenge">
+              <div class="sc-panel-card__label">The Challenge</div>
+              <p>International Mastercard holders using ATMs often face unclear fees and currency confusion, creating a frustrating experience that lowers trust and usage.</p>
+            </div>
+            <div class="sc-panel-card sc-panel-card--solution">
+              <div class="sc-panel-card__label">The Solution</div>
+              <p>Enable DCC to show international users exact exchange rates in real-time and let them transact in their home currency — while you earn a margin on every transaction.</p>
+            </div>
+          </div>
+          <div class="sc-highlights">
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Turn negative interchange into revenue
+            </div>
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Real-time exchange rates
+            </div>
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Cardholders see home currency
+            </div>
+          </div>
+          <div class="sc-panel-details">
+            Today, an international transaction has a negative interchange impact. With DCC for Mastercard, you can change these transactions into a positive revenue opportunity. Recommended locations include airports, popular tourist areas, and communities with international cardholders.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. DCC - Visa -->
+    <div class="sc-accordion-item">
+      <button class="sc-accordion-trigger" aria-expanded="false">
+        <div class="sc-accordion-trigger__left">
+          <div class="sc-accordion-trigger__icon icon-dcc-visa">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <div class="sc-accordion-trigger__text">
+            <h3>DCC — Visa</h3>
+            <span>Dynamic Currency Conversion for Visa</span>
+          </div>
+        </div>
+        <svg class="sc-accordion-trigger__chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="sc-accordion-panel">
+        <div class="sc-accordion-panel__inner">
+          <div class="sc-panel-divider"></div>
+          <div class="sc-panel-grid">
+            <div class="sc-panel-card sc-panel-card--challenge">
+              <div class="sc-panel-card__label">The Challenge</div>
+              <p>International Visa cardholders using ATMs often face unclear fees and currency confusion, creating a frustrating experience that lowers trust and usage.</p>
+            </div>
+            <div class="sc-panel-card sc-panel-card--solution">
+              <div class="sc-panel-card__label">The Solution</div>
+              <p>Enable DCC to show international Visa users exact exchange rates in real-time and let them transact in their home currency — while you earn a margin on every transaction.</p>
+            </div>
+          </div>
+          <div class="sc-highlights">
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Turn negative interchange into revenue
+            </div>
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Real-time exchange rates
+            </div>
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Cardholders see home currency
+            </div>
+          </div>
+          <div class="sc-panel-details">
+            Today, an international transaction has a negative interchange impact. With DCC for Visa, you can change these transactions into a positive revenue opportunity. Recommended locations include airports, popular tourist areas, and communities with international cardholders.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Fallback Denials -->
+    <div class="sc-accordion-item">
+      <button class="sc-accordion-trigger" aria-expanded="false">
+        <div class="sc-accordion-trigger__left">
+          <div class="sc-accordion-trigger__icon icon-fallback">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="sc-accordion-trigger__text">
+            <h3>Fallback Denials</h3>
+            <span>Stay compliant with card network thresholds</span>
+          </div>
+        </div>
+        <svg class="sc-accordion-trigger__chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="sc-accordion-panel">
+        <div class="sc-accordion-panel__inner">
+          <div class="sc-panel-divider"></div>
+          <div class="sc-panel-grid">
+            <div class="sc-panel-card sc-panel-card--challenge">
+              <div class="sc-panel-card__label">The Challenge</div>
+              <p>Excessive fallback transactions expose ATM operators to compliance risk and potential penalties from card networks. Damaged chip cards, faulty readers, and terminal issues force magstripe processing and trigger network thresholds.</p>
+            </div>
+            <div class="sc-panel-card sc-panel-card--solution">
+              <div class="sc-panel-card__label">The Solution</div>
+              <p>Monitor and manage fallback transaction rates to stay below network thresholds, avoiding elevated risk flags and potential penalties.</p>
+            </div>
+          </div>
+          <div class="sc-panel-details">
+            A fallback transaction happens when a chip-enabled card is used, but the transaction is processed through magstripe instead. Common causes include damaged chip cards, faulty card readers, or terminal issues.
+            <ul>
+              <li><strong>Visa threshold:</strong> 1% at the terminal level — one problem terminal can trigger elevated risk.</li>
+              <li><strong>Mastercard threshold:</strong> 2% across the ISO's total platform — broader trends matter across the network.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Electronic Journals -->
+    <div class="sc-accordion-item">
+      <button class="sc-accordion-trigger" aria-expanded="false">
+        <div class="sc-accordion-trigger__left">
+          <div class="sc-accordion-trigger__icon icon-ej">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div class="sc-accordion-trigger__text">
+            <h3>Electronic Journals</h3>
+            <span>Cloud-based Reg E dispute resolution</span>
+          </div>
+        </div>
+        <svg class="sc-accordion-trigger__chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="sc-accordion-panel">
+        <div class="sc-accordion-panel__inner">
+          <div class="sc-panel-divider"></div>
+          <div class="sc-panel-grid">
+            <div class="sc-panel-card sc-panel-card--challenge">
+              <div class="sc-panel-card__label">The Challenge</div>
+              <p>Chargebacks and transaction disputes are time-consuming and costly. Slow manual processes and limited visibility into claims demand too much of your time and energy.</p>
+            </div>
+            <div class="sc-panel-card sc-panel-card--solution">
+              <div class="sc-panel-card__label">The Solution</div>
+              <p>Our cloud-based Dispute Dashboard automates tracking, evidence submission, and resolution — all in one place.</p>
+            </div>
+          </div>
+          <div class="sc-highlights">
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              One-click Reg E responses
+            </div>
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              9-month cloud storage
+            </div>
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Meets all network compliance
+            </div>
+          </div>
+          <div class="sc-panel-details">
+            Switch Commerce captures and stores electronic journal records during normal transaction processing. Records are stored for nine months to meet all network Reg E compliance standards. If a dispute arises, journal records are automatically presented to help you respond quickly.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. International Surcharge -->
+    <div class="sc-accordion-item">
+      <button class="sc-accordion-trigger" aria-expanded="false">
+        <div class="sc-accordion-trigger__left">
+          <div class="sc-accordion-trigger__icon icon-surcharge">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="sc-accordion-trigger__text">
+            <h3>International Surcharge</h3>
+            <span>Surcharge management for international cards</span>
+          </div>
+        </div>
+        <svg class="sc-accordion-trigger__chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="sc-accordion-panel">
+        <div class="sc-accordion-panel__inner">
+          <div class="sc-panel-divider"></div>
+          <!-- TODO: Replace this placeholder with actual content from switchcommerce.team/products -->
+          <div class="sc-panel-grid">
+            <div class="sc-panel-card sc-panel-card--challenge">
+              <div class="sc-panel-card__label">The Challenge</div>
+              <p>[Placeholder — paste International Surcharge challenge description here]</p>
+            </div>
+            <div class="sc-panel-card sc-panel-card--solution">
+              <div class="sc-panel-card__label">The Solution</div>
+              <p>[Placeholder — paste International Surcharge solution description here]</p>
+            </div>
+          </div>
+          <div class="sc-panel-details">
+            [Placeholder — paste International Surcharge details here]
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. MoneyPass -->
+    <div class="sc-accordion-item">
+      <button class="sc-accordion-trigger" aria-expanded="false">
+        <div class="sc-accordion-trigger__left">
+          <div class="sc-accordion-trigger__icon icon-moneypass">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="sc-accordion-trigger__text">
+            <h3>MoneyPass&#8480;</h3>
+            <span>Surcharge-free transactions at $0.25 each</span>
+          </div>
+        </div>
+        <svg class="sc-accordion-trigger__chevron" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="sc-accordion-panel">
+        <div class="sc-accordion-panel__inner">
+          <div class="sc-panel-divider"></div>
+          <div class="sc-panel-grid">
+            <div class="sc-panel-card sc-panel-card--challenge">
+              <div class="sc-panel-card__label">The Challenge</div>
+              <p>ATM operators struggle to attract enough cardholders and transaction volume to maximize revenue. High surcharge fees drive cardholders to competing ATMs or cashback at point of sale.</p>
+            </div>
+            <div class="sc-panel-card sc-panel-card--solution">
+              <div class="sc-panel-card__label">The Solution</div>
+              <p>MoneyPass&#8480; surcharge-free transactions at $0.25 each drive higher volume, generate interchange revenue, and help secure premium retail placements.</p>
+            </div>
+          </div>
+          <div class="sc-highlights">
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Drive more transaction volume
+            </div>
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Earn interchange revenue
+            </div>
+            <div class="sc-highlight">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Win premium retail placements
+            </div>
+          </div>
+          <div class="sc-panel-details">
+            A lower fee can still be a smart revenue move when it brings more cardholders to your ATM. Surcharge-free access attracts more users and increases total transaction count. Each withdrawal still generates interchange revenue from the cardholder's bank, and retailers often prefer surcharge-free ATMs — making high-traffic locations easier to secure.
+          </div>
+          <div class="sc-panel-note">*$0.25 per transaction.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /sc-accordion -->
+
+  <!-- Footer CTA -->
+  <div class="sc-footer">
+    <h2>Ready to Add a Feature?</h2>
+    <p>Your Partner Support representative can enable any of these features today.</p>
+    <a href="tel:" class="sc-footer__cta">Talk to Our Team</a>
+  </div>
+
+</div><!-- /sc-landing -->
+
+<script>
+(function() {
+  var items = document.querySelectorAll('.sc-accordion-item');
+  items.forEach(function(item) {
+    var trigger = item.querySelector('.sc-accordion-trigger');
+    var panel = item.querySelector('.sc-accordion-panel');
+
+    trigger.addEventListener('click', function() {
+      var isOpen = item.classList.contains('is-open');
+
+      // Close all
+      items.forEach(function(other) {
+        other.classList.remove('is-open');
+        other.querySelector('.sc-accordion-trigger').setAttribute('aria-expanded', 'false');
+        other.querySelector('.sc-accordion-panel').style.maxHeight = null;
+      });
+
+      // Open clicked (if it was closed)
+      if (!isOpen) {
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
